@@ -5,6 +5,7 @@ import torch
 
 class SummarizationService:
     def __init__(self):
+            # using GPU if exist (through CUDA)
             device = 0 if torch.cuda.is_available() else -1
             self.summarizer = pipeline("summarization", model="facebook/bart-large-cnn", device=device)
 
