@@ -15,4 +15,4 @@ async def create_summary(file: UploadFile = File(...)):
     if "Error:" in summary_text:
         raise HTTPException(status_code=500, detail=summary_text)
     
-    return {"filename": file.filename, "summary:": summary_text}
+    return {"filename": file.filename, "summary": summary_text}
