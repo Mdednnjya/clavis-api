@@ -34,6 +34,6 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
 
-      # Todo: update Fargate step.
-      - name: Deploy to Fargate (Placeholder)
-        run: echo "Deployment to Fargate will be configured next."
+      - name: Force new deployment on AWS Fargate
+        run: |
+          aws ecs update-service --cluster clavis-cluster --service clavis-api-service --force-new-deployment
