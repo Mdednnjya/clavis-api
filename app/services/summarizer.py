@@ -22,7 +22,12 @@ class SummarizationService:
                             full_text += page_text + "\n"
 
                 # chunking the data into model since we have a limited token 
-                chunks = [full_text[i:i+2000] for i in range (0, len(full_text), 2000)]
+                chunks = [full_text[i:i+3000] for i in range (0, len(full_text), 3000)]
+
+                # limit to '2' chunks for production cost efficiency
+                MAX_CHUNKS = 2
+                if len(chunks) > MAX_CHUNKS:
+                 chunks = chunks[:MAX_CHUNKS]
 
                 # to store the post summary text
                 summaries = []
@@ -30,7 +35,7 @@ class SummarizationService:
                 # core logic on inserting chunk data into model
                 for chunk in chunks:
                       if chunk.strip():
-                            summary = self.summarizer(chunk, max_length=250, min_length=50, do_sample=False)
+                            summary = self.summarizer(chunk, max_length=300, min_length=110, do_sample=False)
                             summaries.append(summary[0]['summary_text'])
 
 
