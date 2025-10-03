@@ -8,7 +8,7 @@ app = FastAPI(title="Clavis API")
 origins = [
     "http://localhost:3000",
     "http://localhost",
-    "https://clavis-app.vercel.app/"
+    "https://clavis-app.vercel.app"
 ]
 
 app.add_middleware(
